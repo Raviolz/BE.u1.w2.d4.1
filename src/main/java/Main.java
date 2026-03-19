@@ -153,5 +153,11 @@ public class Main {
         totalByCustomer.forEach((customer, total) ->
                 System.out.println("Cliente: " + customer.getName() + ", totale acquisti: " + total)
         );
+
+
+        System.out.println("*****************************************************      ES  3      ************************************************************");
+
+        List<Product> expensiveStuff = allProductList.stream().filter(product -> product.getPrice() > 100).toList();
+        expensiveStuff.forEach(product -> System.out.println("Prodotto: " + product.getName() + " prezzo: " + product.getPrice()));
     }
 }
