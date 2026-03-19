@@ -159,5 +159,29 @@ public class Main {
 
         List<Product> expensiveStuff = allProductList.stream().filter(product -> product.getPrice() > 100).toList();
         expensiveStuff.forEach(product -> System.out.println("Prodotto: " + product.getName() + " prezzo: " + product.getPrice()));
+
+
+        System.out.println("*****************************************************      ES  4      ************************************************************");
+
+        // ordine medio per persona
+
+        Map<Customer, Double> averageOrderPerPerson = allOrderList.stream()
+                .collect(Collectors.groupingBy(
+                        order -> order.getCustomer(),
+                        Collectors.averagingDouble(order -> order.total())
+                ));
+
+        averageOrderPerPerson.forEach((customer, average) ->
+                System.out.println("Cliente: " + customer.getName() + ", media ordini: " + average)
+        );
+
+
+        // ordine medio tot ordini
+
+        double averageOrderTot = allOrderList.stream()
+                .collect(Collectors.averagingDouble(order -> order.total()));
+
+        System.out.println("Media totale ordini: " + averageOrderTot);
+
     }
 }
