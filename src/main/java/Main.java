@@ -183,5 +183,22 @@ public class Main {
 
         System.out.println("Media totale ordini: " + averageOrderTot);
 
+
+        System.out.println("*****************************************************      ES  5      ************************************************************");
+
+
+        Map<String, List<Product>> productByCategory = allProductList.stream().collect(Collectors.groupingBy((product -> product.getCategory())));
+        productByCategory.forEach((category, productsList) -> System.out.println("Categoria: " + category + " prodotti : " + productsList));
+
+
+        // per stampare carino
+        
+        productByCategory.forEach((category, productsList) -> {
+            System.out.println("\nCategoria: " + category);
+
+            productsList.forEach(product ->
+                    System.out.println("- " + product.getName() + " | €" + product.getPrice())
+            );
+        });
     }
 }
