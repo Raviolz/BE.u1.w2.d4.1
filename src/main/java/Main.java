@@ -3,7 +3,8 @@ package Entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     static void main(String[] args) {
@@ -24,7 +25,7 @@ public class Main {
         Customer c12 = new Customer(12, "Simone Rinaldi", 3);
 
 //test
-       // System.out.println(c1);
+        // System.out.println(c1);
 
 
         // CREZIONE TOT PRODUCTS
@@ -134,3 +135,10 @@ public class Main {
 
         System.out.println("*****************************************************     ES  1      ************************************************************");
 
+
+        Map<Customer, List<Order>> orderByCustomer = allOrderList.stream().collect(Collectors.groupingBy(order -> order.getCustomer()));
+        orderByCustomer.forEach((customer, orderList) ->
+                System.out.println("Cliente: " + customer.getName() + ", ordini effettuati: " + orderList)
+        );
+    }
+}
