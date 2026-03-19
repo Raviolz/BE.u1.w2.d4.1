@@ -133,12 +133,25 @@ public class Main {
         // System.out.println(allOrderList);
 
 
-        System.out.println("*****************************************************     ES  1      ************************************************************");
+        System.out.println("*****************************************************      ES  1      ************************************************************");
 
 
         Map<Customer, List<Order>> orderByCustomer = allOrderList.stream().collect(Collectors.groupingBy(order -> order.getCustomer()));
         orderByCustomer.forEach((customer, orderList) ->
                 System.out.println("Cliente: " + customer.getName() + ", ordini effettuati: " + orderList)
+        );
+
+
+        System.out.println("*****************************************************      ES  2      ************************************************************");
+
+        Map<Customer, Double> totalByCustomer = allOrderList.stream()
+                .collect(Collectors.groupingBy(
+                        order -> order.getCustomer(), // come raggruppo
+                        Collectors.summingDouble(order -> order.total()) // cosa faccio dentro ogni gruppo
+                ));
+
+        totalByCustomer.forEach((customer, total) ->
+                System.out.println("Cliente: " + customer.getName() + ", totale acquisti: " + total)
         );
     }
 }

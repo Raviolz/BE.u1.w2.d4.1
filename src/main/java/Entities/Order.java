@@ -53,6 +53,26 @@ public class Order {
         return customer;
     }
 
+    // metodi
+
+//    public double total() {
+//        double total = 0;
+//
+//        for (int i = 0; i < this.getProducts().size(); i++) {
+//            total += this.getProducts().get(i).getPrice();
+//        }
+//
+//        return total;
+//    }
+
+    public double total() {
+        return this.getProducts()
+                .stream()
+                .mapToDouble(p -> p.getPrice())
+                .sum();
+    }
+
+
     @Override
     public String toString() {
         return "Order{" +
